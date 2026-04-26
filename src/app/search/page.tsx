@@ -11,7 +11,11 @@ import { FilterDrawer } from '@flows/search/components/FilterDrawer';
 import { ExpenseChart } from '@flows/search/components/ExpenseChart';
 import { ResultCard } from '@flows/search/components/ResultCard';
 import { DirectAnswerBento } from '@flows/search/components/DirectAnswerBento';
+import { SearchActionBanner } from '@flows/search/components/SearchActionBanner';
+import { TopRecipientsCard } from '@flows/search/components/TopRecipientsCard';
+import { ExpenseList } from '@flows/search/components/ExpenseList';
 import { CategoryType } from '@lib/types/search';
+import { exportToCSV, exportToPDF } from '@lib/utils/exportData';
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
@@ -138,28 +142,21 @@ export default function SearchPage() {
               {/* Chart Section */}
               <ExpenseChart data={filteredResults} />
 
-              {/* Results List */}
-              <div className="grid grid-cols-1 gap-6">
-                {filteredResults.length > 0 ? (
-                  filteredResults.map((item) => (
-                    <ResultCard key={item.id} expense={item} />
-                  ))
-                ) : (
-                  <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-outline-variant">
-                    <div className="text-5xl mb-6">🔍</div>
-                    <h3 className="text-2xl font-bold text-on-surface mb-2">Nenhum resultado encontrado</h3>
-                    <p className="text-on-surface-variant max-w-md mx-auto mb-8">
-                      Não encontramos registros que correspondam aos seus filtros atuais. Tente remover alguns filtros ou buscar termos mais genéricos.
-                    </p>
-                    <button 
-                      onClick={handleClearFilters}
-                      className="px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-opacity-90 shadow-md transition-all"
-                    >
-                      Limpar todos os filtros
-                    </button>
-                  </div>
+              {/* Top 5 Recipients */}
+              <TopRecipientsCard data={filteredResults} activeCategory={activeCategory} />
+
+              {/* Paginated Results List */}
+              <ExpenseList data={filteredResults} />
+
+              {/* Action Banner (Feedback/Downloads) */}
+              <SearchActionBanner 
+                onDownloadCSV={() => exportToCSV(filteredResults, 'stc-export-dados')}
+                onDownloadPDF={() => exportToPDF(
+                  filteredResults, 
+                  'stc-relatorio-dados', 
+                  activeCategory ? `Relatório: ${activeCategory.title}` : 'Relatório de Dados Abertos'
                 )}
-              </div>
+              />
             </div>
 
           </div>
