@@ -84,7 +84,7 @@ export const DirectAnswerBento: React.FC<DirectAnswerBentoProps> = ({ insights }
               <span className={`text-2xl font-bold ${insights.annualVariation > 0 ? 'text-primary' : 'text-error'}`}>
                 {insights.annualVariation > 0 ? '↑' : '↓'} {formatPercentage(Math.abs(insights.annualVariation))}
               </span>
-              <span className="text-base text-on-surface-variant mb-1">vs. 2024</span>
+              <span className="text-base text-on-surface-variant mb-1">vs. 2025</span>
             </div>
           </div>
 

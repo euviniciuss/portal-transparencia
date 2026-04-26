@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="mt-16 pt-8 border-t border-on-secondary border-opacity-10 text-center text-sm opacity-60">
-          © 2025 Estado do Maranhão. Secretaria de Transparência e Controle.
+          © 2026 Estado do Maranhão. Secretaria de Transparência e Controle.
         </div>
       </div>
     </footer>

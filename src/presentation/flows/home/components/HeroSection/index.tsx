@@ -44,7 +44,7 @@ export const HeroSection: React.FC = () => {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Ex: Quanto o estado gastou em saúde em 2025?"
+                placeholder="Ex: Quanto o estado gastou em saúde em 2026?"
                 className="w-full h-16 pl-14 pr-32 rounded-full bg-white border border-outline-variant focus:border-primary focus:outline-none text-on-surface text-lg shadow-[0px_4px_20px_0px_rgba(0,0,0,0.05)] transition-all"
               />
               <button

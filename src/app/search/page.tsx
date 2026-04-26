@@ -83,6 +83,12 @@ export default function SearchPage() {
     return categories.find(c => c.type === filters.category);
   }, [filters.category]);
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Determine which insights to show in the Bento Grid
   const activeInsights = useMemo(() => {
     if (filters.category && mockCategoryInsights[filters.category as CategoryType]) {
@@ -90,6 +96,10 @@ export default function SearchPage() {
     }
     return mockCategoryInsights.global;
   }, [filters.category]);
+
+  if (!isMounted) {
+    return null; // Evita erro de hydration (Server/Client mismatch) devido a mock data randômica
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-surface">

@@ -34,7 +34,7 @@ export function parseNaturalLanguageQuery(input: string): ParsedQuery {
   const words = normalizedInput.replace(/[?,.!]/g, '').split(/\s+/);
   
   // Clean up words to ignore common stop words
-  const stopWords = ['quanto', 'o', 'estado', 'gastou', 'em', 'com', 'no', 'na', 'os', 'as', 'de', 'da', 'do', 'ano'];
+  const stopWords = ['quanto', 'o', 'estado', 'gastou', 'gasto', 'gastos', 'despesa', 'despesas', 'investiu', 'investimento', 'investimentos', 'pagou', 'pagamento', 'pagamentos', 'em', 'com', 'no', 'na', 'os', 'as', 'de', 'da', 'do', 'ano', 'para', 'sobre'];
   const meaningfulWords = words.filter(w => !stopWords.includes(w) && !w.match(/^\d+$/));
 
   for (const [category, synonyms] of Object.entries(CATEGORY_SYNONYMS)) {

@@ -233,10 +233,10 @@ const generateMockExpenses = (): ExpenseDetail[] => {
 
   let idCounter = 1;
 
-  for (let year = 2024; year <= 2025; year++) {
+  for (let year = 2023; year <= 2026; year++) {
     for (let month = 1; month <= 12; month++) {
-      // Only generate up to current month for 2025
-      if (year === 2025 && month > 5) continue;
+      // Only generate up to current month for 2026
+      if (year === 2026 && month > 5) continue;
 
       Object.keys(recipientsByCat).forEach((catKey) => {
         const category = catKey as CategoryType;

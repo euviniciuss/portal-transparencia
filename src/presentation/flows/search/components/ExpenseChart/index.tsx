@@ -25,7 +25,7 @@ export const ExpenseChart: React.FC<ExpenseChartProps> = ({ data }) => {
       .sort((a, b) => a.name.localeCompare(b.name))
       .map(item => ({
         ...item,
-        // Format label: "2024-01" -> "Jan/24"
+        // Format label: "2026-01" -> "Jan/26"
         label: new Date(`${item.name}-01T12:00:00Z`).toLocaleDateString('pt-BR', { month: 'short', year: '2-digit' }).replace('.', ''),
         totalFormatted: item.total / 1000000 // In millions for better display
       }));

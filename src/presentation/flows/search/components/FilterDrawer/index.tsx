@@ -29,7 +29,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
     }
   };
 
-  const years = ['2025', '2024', '2023'];
+  const years = ['2026', '2025', '2024', '2023'];
   const statuses = ['pago', 'empenhado', 'liquidado', 'cancelado'];
 
   return (
