@@ -14,7 +14,9 @@ import { DirectAnswerBento } from '@flows/search/components/DirectAnswerBento';
 import { SearchActionBanner } from '@flows/search/components/SearchActionBanner';
 import { TopRecipientsCard } from '@flows/search/components/TopRecipientsCard';
 import { ExpenseList } from '@flows/search/components/ExpenseList';
+import { EmptySearchState } from '@flows/search/components/EmptySearchState';
 import { CategoryType } from '@lib/types/search';
+
 import { exportToCSV, exportToPDF } from '@lib/utils/exportData';
 
 function SearchPageContent() {
@@ -164,28 +166,33 @@ function SearchPageContent() {
 
             {/* Content Area */}
             <div className="lg:w-3/4 flex-col flex gap-8">
-              
-              {/* Direct Answer Bento (Always visible, adapts to category or global) */}
-              <DirectAnswerBento insights={activeInsights} firstExpenseId={filteredResults[0]?.id} />
-              
-              {/* Chart Section */}
-              <ExpenseChart data={filteredResults} />
+              {filteredResults.length === 0 ? (
+                <EmptySearchState query={rawQuery || filters.term} />
+              ) : (
+                <>
+                  {/* Direct Answer Bento (Always visible, adapts to category or global) */}
+                  <DirectAnswerBento insights={activeInsights} firstExpenseId={filteredResults[0]?.id} />
+                  
+                  {/* Chart Section */}
+                  <ExpenseChart data={filteredResults} />
 
-              {/* Top 5 Recipients */}
-              <TopRecipientsCard data={filteredResults} activeCategory={activeCategory} />
+                  {/* Top 5 Recipients */}
+                  <TopRecipientsCard data={filteredResults} activeCategory={activeCategory} />
 
-              {/* Paginated Results List */}
-              <ExpenseList data={filteredResults} />
+                  {/* Paginated Results List */}
+                  <ExpenseList data={filteredResults} />
 
-              {/* Action Banner (Feedback/Downloads) */}
-              <SearchActionBanner 
-                onDownloadCSV={() => exportToCSV(filteredResults, 'stc-export-dados')}
-                onDownloadPDF={() => exportToPDF(
-                  filteredResults, 
-                  'stc-relatorio-dados', 
-                  activeCategory ? `Relatório: ${activeCategory.title}` : 'Relatório de Dados Abertos'
-                )}
-              />
+                  {/* Action Banner (Feedback/Downloads) */}
+                  <SearchActionBanner 
+                    onDownloadCSV={() => exportToCSV(filteredResults, 'stc-export-dados')}
+                    onDownloadPDF={() => exportToPDF(
+                      filteredResults, 
+                      'stc-relatorio-dados', 
+                      activeCategory ? `Relatório: ${activeCategory.title}` : 'Relatório de Dados Abertos'
+                    )}
+                  />
+                </>
+              )}
             </div>
 
           </div>

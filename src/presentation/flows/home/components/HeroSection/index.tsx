@@ -7,10 +7,10 @@ import { BrandStrip } from '../BrandStrip';
 const COMMON_QUESTIONS = [
   'Gastos com saúde',
   'Gastos com educação',
+  'Gastos com segurança',
   'Salário de servidores',
   'Contratos do estado',
-  'Obras públicas',
-  'Emendas parlamentares'
+  'Obras públicas'
 ];
 
 export const HeroSection: React.FC = () => {
