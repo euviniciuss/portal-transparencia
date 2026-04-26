@@ -40,7 +40,7 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-surface">
+    <section className="w-full pt-16 md:pt-24 pb-0 bg-surface">
       <div className="app-container">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
           <BrandStrip className="max-w-[265px] mb-[33px]" />

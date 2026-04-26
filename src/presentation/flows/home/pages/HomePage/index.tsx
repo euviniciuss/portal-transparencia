@@ -4,6 +4,7 @@ import { HeroSection } from '@flows/home/components/HeroSection';
 import { Footer } from '@flows/home/components/Footer';
 import { CategoriesSection } from './components/CategoriesSection';
 import { MunicipalRepassesSection } from './components/MunicipalRepassesSection';
+import { IndicatorsSection } from './components/IndicatorsSection';
 
 export const HomePage: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ export const HomePage: React.FC = () => {
       
       <main className="flex-grow">
         <HeroSection />
+        <IndicatorsSection className="mt-[115px]" />
         <CategoriesSection />
         <MunicipalRepassesSection />
       </main>
