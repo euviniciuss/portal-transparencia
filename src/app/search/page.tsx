@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Fuse from 'fuse.js';
 import { Header } from '@flows/home/components/Header';
 import { Footer } from '@flows/home/components/Footer';
@@ -17,10 +17,14 @@ import { ExpenseList } from '@flows/search/components/ExpenseList';
 import { CategoryType } from '@lib/types/search';
 import { exportToCSV, exportToPDF } from '@lib/utils/exportData';
 
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const rawQuery = searchParams.get('q') || '';
   const paramCategory = searchParams.get('category') || '';
+  const paramYear = searchParams.get('year') || '';
+  const paramStatus = searchParams.get('status') || '';
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   
@@ -29,8 +33,8 @@ export default function SearchPage() {
 
   const [filters, setFilters] = useState({
     category: paramCategory || parsedInitial.category || '',
-    year: parsedInitial.year ? parsedInitial.year.toString() : '',
-    status: '',
+    year: paramYear || (parsedInitial.year ? parsedInitial.year.toString() : ''),
+    status: paramStatus || '',
     term: parsedInitial.term || ''
   });
 
@@ -39,18 +43,33 @@ export default function SearchPage() {
     const newParsed = parseNaturalLanguageQuery(rawQuery);
     setFilters({
       category: paramCategory || newParsed.category || '',
-      year: newParsed.year ? newParsed.year.toString() : '',
-      status: '',
+      year: paramYear || (newParsed.year ? newParsed.year.toString() : ''),
+      status: paramStatus || '',
       term: newParsed.term || ''
     });
-  }, [rawQuery, paramCategory]);
+  }, [rawQuery, paramCategory, paramYear, paramStatus]);
 
   const handleFilterChange = (key: string, value: string) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+    const newFilters = { ...filters, [key]: value };
+    setFilters(newFilters);
+
+    // Sync to URL
+    const params = new URLSearchParams(searchParams.toString());
+    if (newFilters.category) params.set('category', newFilters.category);
+    else params.delete('category');
+
+    if (newFilters.year) params.set('year', newFilters.year);
+    else params.delete('year');
+
+    if (newFilters.status) params.set('status', newFilters.status);
+    else params.delete('status');
+
+    router.replace(`/search?${params.toString()}`);
   };
 
   const handleClearFilters = () => {
     setFilters({ category: '', year: '', status: '', term: '' });
+    router.replace('/search');
   };
 
   const filteredResults = useMemo(() => {
@@ -98,7 +117,7 @@ export default function SearchPage() {
   }, [filters.category]);
 
   if (!isMounted) {
-    return null; // Evita erro de hydration (Server/Client mismatch) devido a mock data randômica
+    return null; // Evita erro de hydration
   }
 
   return (
@@ -175,5 +194,13 @@ export default function SearchPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-surface flex items-center justify-center text-primary font-bold">Carregando dados...</div>}>
+      <SearchPageContent />
+    </Suspense>
   );
 }
