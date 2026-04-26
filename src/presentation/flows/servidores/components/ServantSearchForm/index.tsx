@@ -50,7 +50,7 @@ export const ServantSearchForm: React.FC<ServantSearchFormProps> = ({ onSearch, 
         <button
           type="submit"
           disabled={isLoading}
-          className="hidden md:block absolute right-2 top-2 bottom-2 px-8 bg-primary text-on-primary font-bold rounded-full hover:opacity-90 transition-all shadow-sm disabled:opacity-50"
+          className="hidden md:block absolute right-2 top-2 bottom-2 px-8 bg-primary text-on-primary font-bold rounded-full hover:opacity-90 transition-all shadow-sm disabled:opacity-50 cursor-pointer"
         >
           {isLoading ? 'Buscando…' : 'Buscar'}
         </button>
@@ -59,7 +59,7 @@ export const ServantSearchForm: React.FC<ServantSearchFormProps> = ({ onSearch, 
       <button
         type="submit"
         disabled={isLoading}
-        className="md:hidden w-full h-14 bg-primary text-on-primary font-bold rounded-full hover:opacity-90 transition-all shadow-sm disabled:opacity-50"
+        className="md:hidden w-full h-14 bg-primary text-on-primary font-bold rounded-full hover:opacity-90 transition-all shadow-sm disabled:opacity-50 cursor-pointer"
       >
         {isLoading ? 'Buscando…' : 'Buscar'}
       </button>

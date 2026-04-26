@@ -144,7 +144,7 @@ function SearchPageContent() {
             {/* Mobile Filter Button */}
             <button 
               onClick={() => setIsDrawerOpen(true)}
-              className="lg:hidden flex items-center justify-center gap-2 py-3 px-6 bg-white border border-outline-variant rounded-xl font-bold text-on-surface shadow-sm hover:border-primary transition-colors"
+              className="lg:hidden flex items-center justify-center gap-2 py-3 px-6 bg-white border border-outline-variant rounded-xl font-bold text-on-surface shadow-sm hover:border-primary transition-colors cursor-pointer"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
               Filtrar Resultados

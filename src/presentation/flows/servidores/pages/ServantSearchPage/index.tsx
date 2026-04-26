@@ -136,7 +136,7 @@ export const ServantSearchPage: React.FC = () => {
                       key={term}
                       type="button"
                       onClick={() => handleSearch(term)}
-                      className="px-4 py-2 bg-white border border-outline-variant rounded-full text-sm font-semibold text-on-surface-variant hover:border-primary hover:text-primary transition-all shadow-sm"
+                      className="px-4 py-2 bg-white border border-outline-variant rounded-full text-sm font-semibold text-on-surface-variant hover:border-primary hover:text-primary transition-all shadow-sm cursor-pointer"
                     >
                       {term}
                     </button>

@@ -66,14 +66,14 @@ export const HeroSection: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="hidden md:block absolute right-2 top-2 bottom-2 px-8 bg-primary text-on-primary font-bold rounded-full hover:bg-opacity-90 transition-all shadow-sm"
+                  className="hidden md:block absolute right-2 top-2 bottom-2 px-8 bg-primary text-on-primary font-bold rounded-full hover:bg-opacity-90 transition-all shadow-sm cursor-pointer"
                 >
                   Buscar
                 </button>
               </div>
               <button
                 type="submit"
-                className="md:hidden w-full h-16 bg-primary text-on-primary font-bold rounded-full hover:bg-opacity-90 transition-all shadow-sm"
+                className="md:hidden w-full h-16 bg-primary text-on-primary font-bold rounded-full hover:bg-opacity-90 transition-all shadow-sm cursor-pointer"
               >
                 Buscar
               </button>
@@ -85,7 +85,7 @@ export const HeroSection: React.FC = () => {
               <button
                 key={question}
                 onClick={(e) => handleSearch(undefined, question)}
-                className="px-5 py-2.5 bg-white border border-outline-variant rounded-full text-sm font-semibold text-[#3C4A43] hover:border-primary hover:text-primary transition-all shadow-sm"
+                className="px-5 py-2.5 bg-white border border-outline-variant rounded-full text-sm font-semibold text-[#3C4A43] hover:border-primary hover:text-primary transition-all shadow-sm cursor-pointer"
               >
                 {question}
               </button>

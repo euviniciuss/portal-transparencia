@@ -59,7 +59,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
 
           <div className="hidden lg:flex justify-between items-center mb-6">
             <h2 className="text-lg font-bold text-on-surface">Filtros</h2>
-            <button onClick={onClearFilters} className="text-sm font-semibold text-primary hover:underline">
+            <button onClick={onClearFilters} className="text-sm font-semibold text-primary hover:underline cursor-pointer">
               Limpar
             </button>
           </div>
@@ -75,7 +75,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
                   value=""
                   checked={filters.category === ''}
                   onChange={() => onFilterChange('category', '')}
-                  className="w-5 h-5 text-primary focus:ring-primary border-outline-variant"
+                  className="w-5 h-5 text-primary focus:ring-primary border-outline-variant cursor-pointer"
                 />
                 <span className="text-on-surface group-hover:text-primary transition-colors">Todas as áreas</span>
               </label>
@@ -87,7 +87,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
                     value={cat.type}
                     checked={filters.category === cat.type}
                     onChange={() => onFilterChange('category', cat.type)}
-                    className="w-5 h-5 text-primary focus:ring-primary border-outline-variant"
+                    className="w-5 h-5 text-primary focus:ring-primary border-outline-variant cursor-pointer"
                   />
                   <span className="text-on-surface group-hover:text-primary transition-colors">{cat.title}</span>
                 </label>
@@ -101,7 +101,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
             <select 
               value={filters.year}
               onChange={(e) => onFilterChange('year', e.target.value)}
-              className="w-full p-3 rounded-xl border border-outline-variant focus:border-primary focus:outline-none bg-white text-on-surface"
+              className="w-full p-3 pr-10 rounded-xl border border-outline-variant focus:border-primary focus:outline-none bg-white text-on-surface cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2F12000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236B7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_0.5rem_center] bg-no-repeat"
             >
               <option value="">Todos os anos</option>
               {years.map(y => (
@@ -116,7 +116,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
             <div className="flex flex-wrap gap-2">
               <button 
                 onClick={() => onFilterChange('status', '')}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all border ${filters.status === '' ? 'bg-primary text-white border-primary' : 'bg-white text-on-surface-variant border-outline-variant hover:border-primary'}`}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all border cursor-pointer ${filters.status === '' ? 'bg-primary text-white border-primary' : 'bg-white text-on-surface-variant border-outline-variant hover:border-primary'}`}
               >
                 Todos
               </button>
@@ -124,7 +124,7 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
                 <button 
                   key={status}
                   onClick={() => onFilterChange('status', status)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold capitalize transition-all border ${filters.status === status ? 'bg-primary text-white border-primary' : 'bg-white text-on-surface-variant border-outline-variant hover:border-primary'}`}
+                  className={`px-4 py-2 rounded-full text-sm font-semibold capitalize transition-all border cursor-pointer ${filters.status === status ? 'bg-primary text-white border-primary' : 'bg-white text-on-surface-variant border-outline-variant hover:border-primary'}`}
                 >
                   {status}
                 </button>
