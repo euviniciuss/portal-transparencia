@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* TranspareCI Design Tokens */
+  /* Portal da Transparência Design Tokens */
   --color-primary: #006394;
   --color-on-primary: #ffffff;
   --color-primary-container: #C7E7FF;

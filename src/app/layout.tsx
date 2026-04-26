@@ -8,7 +8,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'TranspareCI - Portal da Transparência',
+  title: 'Portal da Transparência - Governo do Maranhão',
   description: 'Consulte os gastos, contratos e servidores do Estado do Maranhão.',
 };
 
