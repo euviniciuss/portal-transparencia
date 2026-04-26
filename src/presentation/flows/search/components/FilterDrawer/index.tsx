@@ -37,14 +37,14 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
       {/* Mobile Backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden transition-opacity"
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity"
           onClick={handleBackdropClick}
         />
       )}
 
       {/* Drawer / Sidebar */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
+        fixed inset-y-0 left-0 z-50 w-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
         lg:relative lg:translate-x-0 lg:w-full lg:shadow-none lg:bg-transparent lg:z-auto
         flex flex-col h-full lg:h-auto overflow-y-auto
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
