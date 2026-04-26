@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,10 +26,7 @@ export const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-on-primary font-bold shadow-sm">
-              T
-            </div>
-            <span className="text-xl font-bold text-primary tracking-tight">TranspareCI</span>
+            <Image src="/assets/logo.svg" alt="Logo" width={147} height={49} />
           </Link>
           
           {/* Desktop Nav */}

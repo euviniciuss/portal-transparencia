@@ -2,10 +2,10 @@
 
 :root {
   /* TranspareCI Design Tokens */
-  --color-primary: #006c4f;
+  --color-primary: #006394;
   --color-on-primary: #ffffff;
-  --color-primary-container: #00c896;
-  --color-on-primary-container: #004d38;
+  --color-primary-container: #C7E7FF;
+  --color-on-primary-container: #001D35;
 
   --color-secondary: #515f77;
   --color-on-secondary: #ffffff;
@@ -16,6 +16,8 @@
   --color-on-tertiary: #ffffff;
   --color-tertiary-container: #e5a500;
   --color-on-tertiary-container: #5a3e00;
+
+  --color-on-title: #0F1E33;
 
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
@@ -30,8 +32,8 @@
   --color-surface-variant: #e4e2e1;
   --color-on-surface-variant: #3c4a43;
 
-  --color-outline: #6c7a72;
-  --color-outline-variant: #bbcac1;
+  --color-outline: #6F7985;
+  --color-outline-variant: #C2C7D0;
 }
 
 @theme inline {
@@ -44,6 +46,8 @@
   --color-on-secondary: var(--color-on-secondary);
   --color-secondary-container: var(--color-secondary-container);
   --color-on-secondary-container: var(--color-on-secondary-container);
+
+  --color-on-title: var(--color-on-title);
 
   --color-tertiary: var(--color-tertiary);
   --color-on-tertiary: var(--color-on-tertiary);

@@ -15,7 +15,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ expense }) => {
   const formattedDate = new Date(expense.date).toLocaleDateString('pt-BR');
 
   const statusColors = {
-    pago: 'bg-[#00c896] text-[#004d38]', // primary-container
+    pago: 'bg-[#C7E7FF] text-[#001D35]', // primary-container blue
     empenhado: 'bg-[#ffdea8] text-[#271900]', // tertiary-fixed
     liquidado: 'bg-[#d2e0fd] text-[#55637b]', // secondary-container
     cancelado: 'bg-[#ffdad6] text-[#93000a]' // error-container

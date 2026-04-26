@@ -84,8 +84,8 @@ export const SalaryHistoryChart: React.FC<SalaryHistoryChartProps> = ({ history 
                 value === 'grossSalary' ? 'Bruto' : 'Líquido'
               }
             />
-            <Bar dataKey="grossSalary" fill="#006c4f" radius={[3, 3, 0, 0]} name="grossSalary" />
-            <Bar dataKey="netSalary" fill="#4DB6AC" radius={[3, 3, 0, 0]} name="netSalary" />
+            <Bar dataKey="grossSalary" fill="#006394" radius={[3, 3, 0, 0]} name="grossSalary" />
+            <Bar dataKey="netSalary" fill="#4A90E2" radius={[3, 3, 0, 0]} name="netSalary" />
           </BarChart>
         </ResponsiveContainer>
       </div>

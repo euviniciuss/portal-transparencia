@@ -10,9 +10,9 @@ export const SearchActionBanner: React.FC<SearchActionBannerProps> = ({
   onDownloadCSV 
 }) => {
   return (
-    <div className="w-full bg-[#E6F9F5] border border-[#B3EBDC] rounded-xl p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 my-12">
+    <div className="w-full bg-[#E6F2F9] border border-[#B3D6EB] rounded-xl p-6 md:p-8 flex flex-col lg:flex-row items-center justify-between gap-6 my-12">
       <div className="flex flex-col gap-1 text-center lg:text-left">
-        <h3 className="text-lg md:text-xl font-medium text-[#1B1C1C]" style={{ fontFamily: 'Public Sans, sans-serif' }}>
+        <h3 className="text-lg md:text-xl font-medium text-[#1B1C1C]">
           Precisa dos dados detalhados para análise?
         </h3>
       </div>

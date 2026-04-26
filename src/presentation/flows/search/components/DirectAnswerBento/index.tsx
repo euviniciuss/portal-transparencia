@@ -31,7 +31,7 @@ export const DirectAnswerBento: React.FC<DirectAnswerBentoProps> = ({ insights, 
         {/* Top Section */}
         <div className="flex flex-col gap-6">
           <div className="flex justify-between items-start md:items-center flex-col md:flex-row gap-4">
-            <h2 className="text-3xl font-bold text-on-surface" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <h2 className="text-3xl font-bold text-on-surface">
               {insights.title}
             </h2>
             <div className="inline-flex items-center gap-2 bg-primary-container bg-opacity-20 text-on-primary-container px-3 py-1.5 rounded-full">
@@ -109,7 +109,7 @@ export const DirectAnswerBento: React.FC<DirectAnswerBentoProps> = ({ insights, 
           <div className="text-secondary p-1 mt-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
           </div>
-          <h3 className="text-2xl font-semibold text-on-surface leading-tight" style={{ fontFamily: 'Public Sans, sans-serif' }}>
+          <h3 className="text-2xl font-semibold text-on-surface leading-tight">
             {insights.distributionTitle}
           </h3>
         </div>
@@ -122,11 +122,11 @@ export const DirectAnswerBento: React.FC<DirectAnswerBentoProps> = ({ insights, 
             
             // Diverse colors from design system for each item
             const barColors = [
-              'bg-[#006c4f]', // primary
-              'bg-[#3adfab]', // inverse-primary
-              'bg-[#006c4f]', // primary
+              'bg-[#006394]', // primary blue
+              'bg-[#4A90E2]', // secondary blue
+              'bg-[#006394]', // primary blue
               'bg-[#e5a500]', // tertiary-container
-              'bg-[#bbcac1]', // outline-variant
+              'bg-[#C2C7D0]', // outline-variant (gray-blue)
             ];
             const color = barColors[idx % barColors.length];
             

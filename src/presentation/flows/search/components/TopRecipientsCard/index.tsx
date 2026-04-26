@@ -39,7 +39,7 @@ export const TopRecipientsCard: React.FC<TopRecipientsCardProps> = ({ data, acti
     <div className="w-full bg-white rounded-[12px] border border-[#E4E2E1] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.05)] p-6 md:p-8 flex flex-col gap-4">
       {/* Header */}
       <div className="flex justify-between items-center w-full">
-        <h3 className="text-2xl font-semibold text-[#1B1C1C]" style={{ fontFamily: 'Public Sans, sans-serif' }}>
+        <h3 className="text-2xl font-semibold text-[#1B1C1C]">
           Quem recebeu mais?
         </h3>
         <div className="text-secondary">
@@ -49,7 +49,7 @@ export const TopRecipientsCard: React.FC<TopRecipientsCardProps> = ({ data, acti
 
       {/* Subtitle */}
       <div className="w-full">
-        <p className="text-[#3C4A43] text-xs uppercase tracking-widest" style={{ fontFamily: 'Public Sans, sans-serif' }}>
+        <p className="text-[#3C4A43] text-xs uppercase tracking-widest">
           TOP 5 FORNECEDORES ({subtitleCategory})
         </p>
       </div>
@@ -64,12 +64,12 @@ export const TopRecipientsCard: React.FC<TopRecipientsCardProps> = ({ data, acti
               className={`flex flex-row justify-between items-center py-4 ${!isLast ? 'border-b border-[#EAE8E7]' : ''}`}
             >
               <div className="pr-4 flex-1">
-                <p className="text-[#1B1C1C] text-base" style={{ fontFamily: 'Public Sans, sans-serif' }}>
+                <p className="text-[#1B1C1C] text-base">
                   {recipient.name}
                 </p>
               </div>
               <div className="flex-shrink-0 text-right">
-                <p className="text-[#006C4F] text-sm font-semibold tracking-wide" style={{ fontFamily: 'Public Sans, sans-serif' }}>
+                <p className="text-primary text-sm font-semibold tracking-wide">
                   {formatCurrencyCompact(recipient.total)}
                 </p>
               </div>

@@ -76,7 +76,7 @@ export const ExpenseChart: React.FC<ExpenseChartProps> = ({ data }) => {
             <Tooltip content={<CustomTooltip />} cursor={{ fill: '#f6f3f2' }} />
             <Bar dataKey="totalFormatted" radius={[4, 4, 0, 0]}>
               {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill="#006c4f" />
+                <Cell key={`cell-${index}`} fill="#006394" />
               ))}
             </Bar>
           </BarChart>
