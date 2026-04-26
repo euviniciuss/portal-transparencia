@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { ExpenseDetail } from '@lib/types/search';
 
 interface ResultCardProps {
@@ -50,10 +51,12 @@ export const ResultCard: React.FC<ResultCardProps> = ({ expense }) => {
             </span>
           </span>
         </div>
-        <button className="text-primary font-bold text-sm flex items-center hover:underline bg-surface-container-low px-4 py-2 rounded-lg transition-colors hover:bg-surface-container">
-          Ver detalhes
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </button>
+        <Link href={`/payment/${expense.id}`}>
+          <span className="text-primary font-bold text-sm flex items-center hover:underline bg-surface-container-low px-4 py-2 rounded-lg transition-colors hover:bg-surface-container cursor-pointer">
+            Ver detalhes
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </Link>
       </div>
     </div>
   );

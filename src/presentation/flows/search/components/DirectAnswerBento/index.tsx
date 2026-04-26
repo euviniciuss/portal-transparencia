@@ -1,11 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 import { CategoryInsights } from '@lib/types/search';
 
 interface DirectAnswerBentoProps {
   insights: CategoryInsights;
+  firstExpenseId?: string;
 }
 
-export const DirectAnswerBento: React.FC<DirectAnswerBentoProps> = ({ insights }) => {
+export const DirectAnswerBento: React.FC<DirectAnswerBentoProps> = ({ insights, firstExpenseId }) => {
   // Formatters
   const formatCurrency = (value: number) => {
     if (value >= 1000000000) {
@@ -92,10 +94,12 @@ export const DirectAnswerBento: React.FC<DirectAnswerBentoProps> = ({ insights }
 
         {/* Bottom Button */}
         <div className="pt-6 border-t border-outline-variant">
-          <button className="flex items-center gap-2 px-6 py-3 border border-primary text-primary font-bold rounded-lg hover:bg-primary-container hover:bg-opacity-10 transition-colors w-full md:w-auto justify-center">
-            Ver dados técnicos completos
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </button>
+          <Link href={firstExpenseId ? `/payment/${firstExpenseId}` : '/search'}>
+            <span className="flex items-center gap-2 px-6 py-3 border border-primary text-primary font-bold rounded-lg hover:bg-primary-container hover:bg-opacity-10 transition-colors w-full md:w-auto justify-center cursor-pointer">
+              Ver dados técnicos completos
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </Link>
         </div>
       </div>
 

@@ -147,7 +147,7 @@ export default function SearchPage() {
             <div className="lg:w-3/4 flex-col flex gap-8">
               
               {/* Direct Answer Bento (Always visible, adapts to category or global) */}
-              <DirectAnswerBento insights={activeInsights} />
+              <DirectAnswerBento insights={activeInsights} firstExpenseId={filteredResults[0]?.id} />
               
               {/* Chart Section */}
               <ExpenseChart data={filteredResults} />

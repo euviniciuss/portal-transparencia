@@ -280,3 +280,14 @@ const generateMockExpenses = (): ExpenseDetail[] => {
 };
 
 export const mockExpenses: ExpenseDetail[] = generateMockExpenses();
+
+// Helper functions for Payment Details Flow
+export function getExpenseById(id: string): ExpenseDetail | undefined {
+  return mockExpenses.find(expense => expense.id === id);
+}
+
+export function getRelatedExpenses(recipient: string, currentId: string): ExpenseDetail[] {
+  return mockExpenses
+    .filter(expense => expense.recipient === recipient && expense.id !== currentId)
+    .slice(0, 3); // Return top 3 related
+}
