@@ -3,6 +3,7 @@ import { ServantDetail, SalaryCompositionData, SalaryHistoryEntry } from '@lib/t
 export interface ServantSearchFormProps {
   onSearch: (query: string) => void;
   isLoading?: boolean;
+  defaultValue?: string;
 }
 
 export interface ServantCardProps {

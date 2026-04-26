@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Header } from '@flows/home/components/Header';
 import { Footer } from '@flows/home/components/Footer';
 import { ServantSearchForm } from '@flows/servidores/components/ServantSearchForm';
@@ -11,6 +12,7 @@ import { searchServants } from '@lib/mocks/servants-data';
 import { ServantDetail } from '@lib/types/servants';
 
 export const ServantSearchPage: React.FC = () => {
+  const searchParams = useSearchParams();
   const [results, setResults] = useState<ServantDetail[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [hasSearched, setHasSearched] = useState(false);
@@ -21,6 +23,13 @@ export const ServantSearchPage: React.FC = () => {
     const found = searchServants(query);
     setResults(found);
   }, []);
+
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) {
+      handleSearch(q);
+    }
+  }, [searchParams, handleSearch]);
 
   const handleClear = useCallback(() => {
     setSearchTerm('');
@@ -49,7 +58,7 @@ export const ServantSearchPage: React.FC = () => {
               </p>
 
               <div className="w-full max-w-2xl">
-                <ServantSearchForm onSearch={handleSearch} />
+                <ServantSearchForm onSearch={handleSearch} defaultValue={searchParams.get('q') || ''} />
               </div>
             </div>
           </div>

@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import { ServantSearchFormValues } from '@lib/types/servants';
 import { ServantSearchFormProps } from '@flows/servidores/types';
 
-export const ServantSearchForm: React.FC<ServantSearchFormProps> = ({ onSearch, isLoading }) => {
+export const ServantSearchForm: React.FC<ServantSearchFormProps> = ({ onSearch, isLoading, defaultValue }) => {
   const { register, handleSubmit } = useForm<ServantSearchFormValues>({
-    defaultValues: { query: '' },
+    defaultValues: { query: defaultValue || '' },
   });
 
   const onSubmit = (data: ServantSearchFormValues) => {
