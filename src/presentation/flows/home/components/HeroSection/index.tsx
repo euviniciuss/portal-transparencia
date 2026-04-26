@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BrandStrip } from '../BrandStrip';
+import { parseNaturalLanguageQuery } from '@lib/utils/queryParser';
 
 const COMMON_QUESTIONS = [
   'Gastos com saúde',
@@ -22,21 +23,22 @@ export const HeroSection: React.FC = () => {
     const finalQuery = customQuery || query;
     if (!finalQuery.trim()) return;
 
-    // Redirect servant-related searches to the dedicated page
-    const normalised = finalQuery
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
+    const parsed = parseNaturalLanguageQuery(finalQuery);
 
-    if (
-      normalised.includes('servidor') ||
-      normalised.includes('salario de servidor')
-    ) {
-      router.push('/servidores');
+    // Redireciona para servidores se a categoria detectada for servidores
+    if (parsed.category === 'servidores') {
+      const params = new URLSearchParams();
+      if (parsed.term) params.set('q', parsed.term);
+      router.push(`/servidores${params.toString() ? `?${params.toString()}` : ''}`);
       return;
     }
 
-    router.push(`/search?q=${encodeURIComponent(finalQuery.trim())}`);
+    const params = new URLSearchParams();
+    params.set('q', finalQuery.trim());
+    if (parsed.municipality) params.set('municipality', parsed.municipality);
+    if (parsed.category) params.set('category', parsed.category);
+    if (parsed.year) params.set('year', parsed.year.toString());
+    router.push(`/search?${params.toString()}`);
   };
 
   return (

@@ -1,4 +1,5 @@
 import { CategorySummary, ExpenseDetail, CategoryType } from '@lib/types/search';
+import { pickWeightedMunicipality, PROVIDERS_BY_MUNICIPALITY } from '@lib/mocks/municipalities-data';
 
 export const categories: CategorySummary[] = [
   {
@@ -247,7 +248,14 @@ const generateMockExpenses = (): ExpenseDetail[] => {
         const count = Math.floor(Math.random() * 4) + 2;
         
         for (let i = 0; i < count; i++) {
-          const recipient = recipients[Math.floor(Math.random() * recipients.length)];
+          const municipality = pickWeightedMunicipality();
+          
+          // Try to use a provider from the municipality, fall back to category providers
+          const municipalityProviders = PROVIDERS_BY_MUNICIPALITY[municipality];
+          const recipient = municipalityProviders && municipalityProviders.length > 0
+            ? municipalityProviders[Math.floor(Math.random() * municipalityProviders.length)]
+            : recipients[Math.floor(Math.random() * recipients.length)];
+          
           const description = descriptions[Math.floor(Math.random() * descriptions.length)];
           const amount = Math.floor(Math.random() * 100000000) + 1000000; // Between 1M and 101M
           const status = statuses[Math.floor(Math.random() * statuses.length)];
@@ -265,8 +273,9 @@ const generateMockExpenses = (): ExpenseDetail[] => {
             month,
             description: `${description} referente ao período.`,
             category,
-            subCategory: description, // Just for chart grouping variation
-            status
+            subCategory: description,
+            status,
+            municipality,
           });
           
           idCounter++;

@@ -11,6 +11,7 @@ export interface ExpenseDetail {
   category: CategoryType;
   subCategory?: string;
   status: 'empenhado' | 'liquidado' | 'pago' | 'cancelado';
+  municipality?: string;
 }
 
 export interface CategoryInsights {

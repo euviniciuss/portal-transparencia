@@ -13,10 +13,10 @@ import { ResultCard } from '@flows/search/components/ResultCard';
 import { DirectAnswerBento } from '@flows/search/components/DirectAnswerBento';
 import { SearchActionBanner } from '@flows/search/components/SearchActionBanner';
 import { TopRecipientsCard } from '@flows/search/components/TopRecipientsCard';
+import { TopMunicipalityCard } from '@flows/search/components/TopMunicipalityCard';
 import { ExpenseList } from '@flows/search/components/ExpenseList';
 import { EmptySearchState } from '@flows/search/components/EmptySearchState';
 import { CategoryType } from '@lib/types/search';
-
 import { exportToCSV, exportToPDF } from '@lib/utils/exportData';
 
 function SearchPageContent() {
@@ -27,57 +27,54 @@ function SearchPageContent() {
   const paramCategory = searchParams.get('category') || '';
   const paramYear = searchParams.get('year') || '';
   const paramStatus = searchParams.get('status') || '';
+  const paramMunicipality = searchParams.get('municipality') || '';
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   
-  // Parse the query once on mount or when URL changes
   const parsedInitial = useMemo(() => parseNaturalLanguageQuery(rawQuery), [rawQuery]);
 
   const [filters, setFilters] = useState({
     category: paramCategory || parsedInitial.category || '',
     year: paramYear || (parsedInitial.year ? parsedInitial.year.toString() : ''),
     status: paramStatus || '',
+    municipality: paramMunicipality || '',
     term: parsedInitial.term || ''
   });
 
-  // Sync state if URL changes (like when clicking a badge on Home again)
   useEffect(() => {
     const newParsed = parseNaturalLanguageQuery(rawQuery);
     setFilters({
       category: paramCategory || newParsed.category || '',
       year: paramYear || (newParsed.year ? newParsed.year.toString() : ''),
       status: paramStatus || '',
+      municipality: paramMunicipality || '',
       term: newParsed.term || ''
     });
-  }, [rawQuery, paramCategory, paramYear, paramStatus]);
+  }, [rawQuery, paramCategory, paramYear, paramStatus, paramMunicipality]);
 
   const handleFilterChange = (key: string, value: string) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
 
-    // Sync to URL
-    const params = new URLSearchParams(searchParams.toString());
+    // Rebuild params from scratch to avoid stale params from the original query URL
+    const params = new URLSearchParams();
+    if (rawQuery) params.set('q', rawQuery);
     if (newFilters.category) params.set('category', newFilters.category);
-    else params.delete('category');
-
     if (newFilters.year) params.set('year', newFilters.year);
-    else params.delete('year');
-
     if (newFilters.status) params.set('status', newFilters.status);
-    else params.delete('status');
+    if (newFilters.municipality) params.set('municipality', newFilters.municipality);
 
     router.replace(`/search?${params.toString()}`);
   };
 
   const handleClearFilters = () => {
-    setFilters({ category: '', year: '', status: '', term: '' });
+    setFilters({ category: '', year: '', status: '', municipality: '', term: '' });
     router.replace('/search');
   };
 
   const filteredResults = useMemo(() => {
     let results = mockExpenses;
 
-    // 1. Exact matches (Hard filters)
     if (filters.category) {
       results = results.filter(item => item.category === filters.category);
     }
@@ -87,12 +84,14 @@ function SearchPageContent() {
     if (filters.status) {
       results = results.filter(item => item.status === filters.status);
     }
+    if (filters.municipality) {
+      results = results.filter(item => item.municipality === filters.municipality);
+    }
 
-    // 2. Fuzzy Search for remaining term
     if (filters.term) {
       const fuse = new Fuse(results, {
-        keys: ['recipient', 'description'],
-        threshold: 0.3, // 0.0 is exact, 1.0 is very loose
+        keys: ['recipient', 'description', 'municipality'],
+        threshold: 0.3,
       });
       results = fuse.search(filters.term).map(result => result.item);
     }
@@ -105,12 +104,8 @@ function SearchPageContent() {
   }, [filters.category]);
 
   const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => { setIsMounted(true); }, []);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  // Determine which insights to show in the Bento Grid
   const activeInsights = useMemo(() => {
     if (filters.category && mockCategoryInsights[filters.category as CategoryType]) {
       return mockCategoryInsights[filters.category as CategoryType];
@@ -118,9 +113,7 @@ function SearchPageContent() {
     return mockCategoryInsights.global;
   }, [filters.category]);
 
-  if (!isMounted) {
-    return null; // Evita erro de hydration
-  }
+  if (!isMounted) return null;
 
   return (
     <div className="min-h-screen flex flex-col bg-surface">
@@ -136,7 +129,13 @@ function SearchPageContent() {
                 {activeCategory ? `Resultados: ${activeCategory.title}` : 'Resultados da Busca'}
               </h1>
               <p className="text-on-surface-variant text-lg">
-                {rawQuery && <span className="block mb-1">Buscando por: <strong>"{rawQuery}"</strong></span>}
+                {rawQuery && <span className="block mb-1">Buscando por: <strong>&quot;{rawQuery}&quot;</strong></span>}
+                {filters.municipality && (
+                  <span className="inline-flex items-center gap-1.5 mb-1 bg-primary/10 text-primary text-sm font-semibold px-3 py-1 rounded-full mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    {filters.municipality}
+                  </span>
+                )}
                 Encontrados <strong>{filteredResults.length}</strong> registros
               </p>
             </div>
@@ -170,14 +169,17 @@ function SearchPageContent() {
                 <EmptySearchState query={rawQuery || filters.term} />
               ) : (
                 <>
-                  {/* Direct Answer Bento (Always visible, adapts to category or global) */}
+                  {/* Direct Answer Bento */}
                   <DirectAnswerBento insights={activeInsights} firstExpenseId={filteredResults[0]?.id} />
                   
                   {/* Chart Section */}
                   <ExpenseChart data={filteredResults} />
 
-                  {/* Top 5 Recipients */}
-                  <TopRecipientsCard data={filteredResults} activeCategory={activeCategory} />
+                  {/* Recipients + Municipality side by side */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <TopRecipientsCard data={filteredResults} activeCategory={activeCategory} />
+                    <TopMunicipalityCard data={filteredResults} />
+                  </div>
 
                   {/* Paginated Results List */}
                   <ExpenseList data={filteredResults} />

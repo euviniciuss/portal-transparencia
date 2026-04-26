@@ -3,6 +3,7 @@
 import React from 'react';
 import { CategoryType } from '@lib/types/search';
 import { categories } from '@lib/mocks/search-data';
+import { TOP_MA_MUNICIPALITIES } from '@lib/mocks/municipalities-data';
 
 interface FilterDrawerProps {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface FilterDrawerProps {
     category: string;
     year: string;
     status: string;
+    municipality: string;
   };
   onFilterChange: (key: string, value: string) => void;
   onClearFilters: () => void;
@@ -31,6 +33,8 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
 
   const years = ['2026', '2025', '2024', '2023'];
   const statuses = ['pago', 'empenhado', 'liquidado', 'cancelado'];
+
+  const selectClass = `w-full p-3 pr-10 rounded-xl border border-outline-variant focus:border-primary focus:outline-none bg-white text-on-surface cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2F20000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236B7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_0.5rem_center] bg-no-repeat`;
 
   return (
     <>
@@ -95,13 +99,29 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
             </div>
           </div>
 
+          {/* Municipality Filter */}
+          <div className="mb-8">
+            <h3 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-4">Município</h3>
+            <select
+              value={filters.municipality}
+              onChange={(e) => onFilterChange('municipality', e.target.value)}
+              className={selectClass}
+              aria-label="Filtrar por município"
+            >
+              <option value="">Todos os municípios</option>
+              {TOP_MA_MUNICIPALITIES.map(m => (
+                <option key={m} value={m}>{m}</option>
+              ))}
+            </select>
+          </div>
+
           {/* Year Filter */}
           <div className="mb-8">
             <h3 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-4">Ano do Exercício</h3>
             <select 
               value={filters.year}
               onChange={(e) => onFilterChange('year', e.target.value)}
-              className="w-full p-3 pr-10 rounded-xl border border-outline-variant focus:border-primary focus:outline-none bg-white text-on-surface cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2F12000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236B7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_0.5rem_center] bg-no-repeat"
+              className={selectClass}
             >
               <option value="">Todos os anos</option>
               {years.map(y => (
@@ -138,13 +158,13 @@ export const FilterDrawer: React.FC<FilterDrawerProps> = ({
           <div className="flex gap-4">
             <button 
               onClick={onClearFilters}
-              className="flex-1 py-3 px-4 bg-white border border-outline-variant text-on-surface-variant font-bold rounded-xl"
+              className="flex-1 py-3 px-4 bg-white border border-outline-variant text-on-surface-variant font-bold rounded-xl cursor-pointer"
             >
               Limpar
             </button>
             <button 
               onClick={onClose}
-              className="flex-1 py-3 px-4 bg-primary text-white font-bold rounded-xl shadow-md"
+              className="flex-1 py-3 px-4 bg-primary text-white font-bold rounded-xl shadow-md cursor-pointer"
             >
               Ver resultados
             </button>
