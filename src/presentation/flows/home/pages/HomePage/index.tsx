@@ -2,7 +2,6 @@ import React from 'react';
 import { Header } from '@flows/home/components/Header';
 import { HeroSection } from '@flows/home/components/HeroSection';
 import { Footer } from '@flows/home/components/Footer';
-import { CategoriesSection } from './components/CategoriesSection';
 import { MunicipalRepassesSection } from './components/MunicipalRepassesSection';
 import { IndicatorsSection } from './components/IndicatorsSection';
 import { AboutPortalSection } from './components/AboutPortalSection';
@@ -18,7 +17,6 @@ export const HomePage: React.FC = () => {
         <IndicatorsSection className="mt-[115px]" />
         <AboutPortalSection />
         <FeaturesSection />
-        <CategoriesSection />
         <MunicipalRepassesSection />
       </main>
 

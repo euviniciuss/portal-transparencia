@@ -29,7 +29,7 @@ const FEATURES = [
 
 export const FeaturesSection: React.FC = () => {
   return (
-    <section className="w-full py-16 md:py-24">
+    <section className="w-full pt-8 pb-32 md:pt-4 md:pb-64">
       <div className="app-container">
         <h2 className="text-2xl md:text-[24px] font-bold text-on-title text-center mb-12 md:mb-16">
           O que você encontra por aqui?

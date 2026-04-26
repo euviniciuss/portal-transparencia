@@ -43,7 +43,7 @@ export const HeroSection: React.FC = () => {
     <section className="w-full pt-16 md:pt-24 pb-0 bg-surface">
       <div className="app-container">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <BrandStrip className="max-w-[265px] mb-[33px]" />
+          <BrandStrip className="w-full max-w-[265px] mb-[33px]" />
           <h1 className="text-4xl md:text-5xl font-bold text-on-title leading-tight mb-4 text-center">
             O que você quer descobrir hoje?
           </h1>
