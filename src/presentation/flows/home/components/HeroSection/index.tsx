@@ -19,9 +19,23 @@ export const HeroSection: React.FC = () => {
   const handleSearch = (e?: React.FormEvent, customQuery?: string) => {
     e?.preventDefault();
     const finalQuery = customQuery || query;
-    if (finalQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(finalQuery.trim())}`);
+    if (!finalQuery.trim()) return;
+
+    // Redirect servant-related searches to the dedicated page
+    const normalised = finalQuery
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+    if (
+      normalised.includes('servidor') ||
+      normalised.includes('salario de servidor')
+    ) {
+      router.push('/servidores');
+      return;
     }
+
+    router.push(`/search?q=${encodeURIComponent(finalQuery.trim())}`);
   };
 
   return (
