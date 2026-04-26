@@ -9,15 +9,15 @@ interface ParsedQuery {
 }
 
 const CATEGORY_SYNONYMS: Record<CategoryType, string[]> = {
-  saude: ['saúde', 'hospital', 'médico', 'medico', 'remedio', 'remédio', 'sus', 'upa'],
-  educacao: ['educação', 'escola', 'professor', 'aluno', 'ensino', 'merenda'],
-  seguranca: ['segurança', 'policia', 'polícia', 'delegacia', 'presidio', 'bombeiro', 'militar'],
-  obras: ['obra', 'construção', 'reforma', 'estrada', 'pavimentação', 'ponte', 'infraestrutura'],
-  servidores: ['servidor', 'salário', 'salario', 'folha', 'pagamento', 'funcionário', 'remuneração'],
-  contratos: ['contrato', 'licitação', 'licitacao', 'empresa', 'terceirizado', 'pregão'],
-  transferencias: ['transferência', 'repasse', 'município', 'prefeitura', 'fundo'],
+  saude: ['saúde', 'saude', 'hospital', 'médico', 'medico', 'remedio', 'remédio', 'sus', 'upa'],
+  educacao: ['educação', 'educacao', 'escola', 'professor', 'aluno', 'ensino', 'merenda'],
+  seguranca: ['segurança', 'seguranca', 'policia', 'polícia', 'delegacia', 'presidio', 'bombeiro', 'militar'],
+  obras: ['obra', 'construção', 'construcao', 'reforma', 'estrada', 'pavimentação', 'pavimentacao', 'ponte', 'infraestrutura'],
+  servidores: ['servidor', 'salário', 'salario', 'folha', 'pagamento', 'funcionário', 'funcionario', 'remuneração', 'remuneracao'],
+  contratos: ['contrato', 'licitação', 'licitacao', 'empresa', 'terceirizado', 'pregão', 'pregao'],
+  transferencias: ['transferência', 'transferencia', 'repasse', 'município', 'municipio', 'prefeitura', 'fundo'],
   'dados-abertos': ['dados', 'planilha', 'download', 'csv', 'api'],
-  receitas: ['receita', 'arrecadação', 'imposto', 'icms', 'ipva', 'tributo']
+  receitas: ['receita', 'arrecadação', 'arrecadacao', 'imposto', 'icms', 'ipva', 'tributo']
 };
 
 /** Normalises a string for comparison: lowercase + strip accents + strip punctuation. */
