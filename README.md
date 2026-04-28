@@ -1,5 +1,5 @@
-<p align="center">
-  <img src="/.github/logo-portal.png" width="50%" alt="Portal de Transparência Logo">
+<p id="readme-top" align="center">
+  <img src=".github/assets/logo-portal.png" width="50%" alt="Portal de Transparência Logo">
 </p>
 
 ## 💡 Portal de Transparência
@@ -44,36 +44,18 @@ Acesse o projeto em produção clicando no botão abaixo:
 2. Executando a Aplicação:
 
 ```sh
-  $ cd stc
+  $ cd portal-transparencia
   $ npm install
   $ npm run dev
 ```
 
-## 👨🏻🚀 Autor do projeto
+## 🚀 Contribuidores
 
-<table>
-      <tr>
-        <td align="center">
-          <a href="https://github.com/euviniciuss">
-            <img
-              style="border-radius: 50%;"
-              src="https://avatars.githubusercontent.com/u/55607439?s=96&v=4"
-              width="100px;"
-              alt="github-icon"
-            />
-            <br />
-            <sub>
-              <b>Marcus Vinicius</b>
-            </sub>
-          </a>
-          <br />
-          <br />
-          <a href="https://www.linkedin.com/in/marcus-vinicius-silva-costa/">
-            <img
-              src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
-              width="100px"
-            />
-          </a>
-        </td>
-      </tr>
-</table>
+<a href="https://github.com/euviniciuss/portal-transparencia/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=euviniciuss/portal-transparencia" alt="contribuitors image" />
+</a>
+
+
+
+
+<p align="right">(<a href="#readme-top">Voltar para o topo ⬆</a>)</p>
